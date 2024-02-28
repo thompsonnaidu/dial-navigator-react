@@ -7,7 +7,6 @@ import Dashboard from "./pages/dashboard/Dashboard.page";
 import ForgotPasswordPage from "./pages/forgot-password/ForgotPasswordPage";
 import LoginPage from "./pages/login/Login.page";
 import SignUpPage from "./pages/sign-up/SignUpPage";
-import ClientPrivateRoute from "./components/PrivateRoute/ClientPrivateRoute";
 function App() {
   return (
     <Router>
@@ -23,7 +22,7 @@ function App() {
                 path="/forgot-password"
                 element={<ForgotPasswordPage />}
               />
-              <Route path="/client" element={<ClientPrivateRoute />}>
+              <Route path="/client" element={<PrivateRoute />}>
                 <Route exact path="/client/dashboard" element={<Dashboard />} />
               </Route>
               <Route path="/therapist" element={<PrivateRoute />}>

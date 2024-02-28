@@ -1,0 +1,225 @@
+{
+    "fields": [
+      {
+        "label": "Emotional",
+        "type": "group",
+        "fields": [
+          {
+            "label": "Anxiety",
+            "type": "range",
+            "min": 0,
+            "max": 5,
+            "required": true
+          },
+          {
+            "label": "Sadness",
+            "type": "range",
+            "min": 0,
+            "max": 5,
+            "required": true
+          },
+          {
+            "label": "Anger",
+            "type": "range",
+            "min": 0,
+            "max": 5,
+            "required": true
+          },
+          {
+            "label": "Shame/Guilt",
+            "type": "range",
+            "min": 0,
+            "max": 5,
+            "required": true
+          },
+          {
+            "label": "Happiness",
+            "type": "range",
+            "min": 0,
+            "max": 5,
+            "required": true
+          },
+          {
+            "label": "Other",
+            "type": "group",
+            "fields": [
+              {
+                "label": "Name",
+                "type": "text"
+              },
+              {
+                "label": "Rating",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Urges",
+        "type": "group",
+        "fields": [
+          {
+            "label": "Self-Harm",
+            "type": "text"
+          },
+          {
+            "label": "Substance Use",
+            "type": "range",
+            "min": 0,
+            "max": 5,
+            "required": true
+          },
+          {
+            "label": "Disordered Eating",
+            "type": "range",
+            "min": 0,
+            "max": 5,
+            "required": true
+          },
+          {
+            "label": "Other",
+            "type": "group",
+            "fields": [
+              {
+                "label": "Name",
+                "type": "text"
+              },
+              {
+                "label": "Rating",
+                "type": "number",
+                "min": 0,
+                "max": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Behavior",
+        "type": "group",
+        "fields": [
+          {
+            "label": "Self-Harm",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "label": "Substance Use",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "label": "Disordered Eating",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "label": "Other",
+            "type": "group",
+            "fields": [
+              {
+                "label": "Name",
+                "type": "text"
+              },
+              {
+                "label": "Rating",
+                "type": "boolean"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "DBT Skill",
+        "type": "group",
+        "fields": [
+          {
+            "label": "Mindfulness",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "label": "Distressed Tolerance",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "label": "Emotional Regulation",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "label": "Interpersonal Effectiveness",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "label": "Other",
+            "type": "group",
+            "fields": [
+              {
+                "label": "Name",
+                "type": "text"
+              },
+              {
+                "label": "Value",
+                "type": "boolean"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Effectiveness DBT Skill",
+        "type": "group",
+        "fields": [
+          {
+            "label": "Mindfulness",
+            "type": "range",
+            "min": 0,
+            "max": 5,
+            "required": true
+          },
+          {
+            "label": "Distressed Tolerance",
+            "type": "range",
+            "min": 0,
+            "max": 5,
+            "required": true
+          },
+          {
+            "label": "Emotional Regulation",
+            "type": "range",
+            "min": 0,
+            "max": 5,
+            "required": true
+          },
+          {
+            "label": "Interpersonal Effectiveness",
+            "type": "range",
+            "min": 0,
+            "max": 5,
+            "required": true
+          },
+          {
+            "label": "Other",
+            "type": "group",
+            "fields": [
+              {
+                "label": "Name",
+                "type": "text"
+              },
+              {
+                "label": "Value",
+                "type": "range",
+                "min": 0,
+                "max": 5
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Alert, Button, Card, Form } from 'react-bootstrap'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
+import RoleConstants from '../../constants/RoleConstants'
 
 const Login = (props) => {
 
@@ -19,8 +20,14 @@ const Login = (props) => {
         try{
             setIsLoading(true);
             setError('');
-           await signIn(emailRef.current.value,passwordRef.current.value);
-           navigate("/client/dashboard")
+           const data=await signIn(emailRef.current.value,passwordRef.current.value);
+           if(data?.userInfo?.role?.name===RoleConstants.CLIENT_ROLE){
+                
+            navigate("/client/dashboard")
+           }else{
+            
+            navigate("/therapist/dashboard")
+           }
         }catch(err){
             console.log(err);
             setError("Invalid email or password")

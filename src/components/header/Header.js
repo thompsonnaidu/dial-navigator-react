@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { useAuth } from "../../contexts/AuthContext";
+import RoleConstants from "../../constants/RoleConstants";
 
 const Header = () => {
   const { currentUser } = useAuth();
@@ -11,11 +12,13 @@ const Header = () => {
     <Navbar bg="primary" variant="dark">
       <Container>
         <Navbar.Brand>Firebase Login Demo</Navbar.Brand>
-        <Nav className="me-auto">
-          <Nav.Link href="/dashboard">Home</Nav.Link>
+        
+        {currentUser && currentUser.userInfo && (
+          <>
+            <Nav className="me-auto">
+          <Nav.Link href={`/${(currentUser?.userInfo.role.name==RoleConstants.CLIENT_ROLE)?"client":"therapist"}/dashboard`}>Home</Nav.Link>
           
         </Nav>
-        {currentUser && (
             <Navbar.Collapse className="justify-content-end">
               <Navbar.Text>
                 Signed in as :
@@ -26,6 +29,7 @@ const Header = () => {
                 </a>
               </Navbar.Text>
             </Navbar.Collapse>
+            </>
           )}
       </Container>
     </Navbar>

@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 import { useAuth } from '../../contexts/AuthContext'
 import BeckDepressionForm from '../../components/BeckForm/BeckDepressionForm';
+import DBTFormComponent from '../../components/DBTForm/DBTFormComponent';
 
 const Dashboard = (props) => {
     
@@ -25,6 +26,8 @@ const Dashboard = (props) => {
             Hello {currentUser && currentUser.email}
                 <button onClick={handleLogOut}>Logout</button>
             <BeckDepressionForm/>
+
+            <DBTFormComponent/>
         </div>
     )
 }
