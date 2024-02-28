@@ -1,0 +1,29 @@
+.clients-table {
+    border-collapse: separate;
+    border-spacing: 0 0.5rem;
+    margin-top: 20px; /* Or as needed */
+  }
+  
+  .clients-table thead th {
+    border-bottom: 2px solid #007bff;
+  }
+  
+  .clients-table tbody tr {
+    border: 1px solid #dee2e6;
+  }
+  
+  /* Hover effect for rows */
+  .clients-table tbody tr:hover {
+    background-color: #e9ecef;
+  }
+  
+  /* Styles for links to make them stand out */
+  .clients-table tbody tr td a {
+    color: #0056b3;
+    text-decoration: none;
+  }
+  
+  .clients-table tbody tr td a:hover {
+    text-decoration: underline;
+  }
+  

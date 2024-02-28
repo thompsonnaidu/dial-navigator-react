@@ -5,6 +5,7 @@ import { useAuth } from '../../contexts/AuthContext'
 import BeckDepressionForm from '../../components/BeckForm/BeckDepressionForm';
 import DBTFormComponent from '../../components/DBTForm/DBTFormComponent';
 import ClientList from '../../components/Therapist/ClientsList' 
+import Roles from "../../constants/RoleConstants"
 
 const Dashboard = (props) => {
     
@@ -25,7 +26,7 @@ const Dashboard = (props) => {
     }
     return (
         <div>
-            {currentUser["userInfo"]["role"]["name"] === 'therapist' ? (
+            {currentUser["userInfo"]["role"]["name"] === Roles.THERAPIST_ROLE ? (
                 <div>
                     Hello Doctor {currentUser.email}
                     <button onClick={handleLogOut}>Logout</button>
