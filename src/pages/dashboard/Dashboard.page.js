@@ -6,6 +6,7 @@ import BeckDepressionForm from '../../components/BeckForm/BeckDepressionForm';
 import DBTFormComponent from '../../components/DBTForm/DBTFormComponent';
 import ClientList from '../../components/Therapist/ClientsList' 
 import Roles from "../../constants/RoleConstants"
+import ClientPendingTaskComponent from '../../components/Client/ClientPendingTaskComponent';
 
 const Dashboard = (props) => {
     
