@@ -1,82 +1,60 @@
 import React, { useState, useEffect } from 'react';
-import Chart from 'react-google-charts';
+import { useParams } from 'react-router-dom';
+import DBTAnalysis from './DBTAnalysis';
+import BeckReport from './BECK';
+import PersonalProgress from './PersonalProgress';
+import { useAuth } from '../../contexts/AuthContext';
+import axios from "axios";
+import { dbtLammbda } from "../../config/baseurl";
+import "../../css/clientdashboard.css"
 
-const DBTAnalysis = ({ data }) => {
-  // State to hold the formatted data for Google Charts, grouped by date
-  const [groupedChartData, setGroupedChartData] = useState({});
+const ClientDashboard = () => {
+  const { clientId } = useParams();
+  const [dbtData, setDbtData] = useState(null);
+  const [activeComponent, setActiveComponent] = useState('dbt');
+  const { currentUser } = useAuth();
+  const [beckData, setBeckData] = useState(null);
 
   useEffect(() => {
-    const groupByDate = (data) => {
-      return data.reduce((acc, entry) => {
-        const date = new Date(entry.submittedDate).toDateString();
-        if (!acc[date]) {
-          acc[date] = [];
-        }
-        acc[date].push(entry);
-        return acc;
-      }, {});
-    };
+    async function fetchDbtData(clientId) {
+      const response = await axios.get(`${dbtLammbda}/dbt?clientId=${clientId}&therapistId=${currentUser.userInfo._id}`);
+      setDbtData(response.data["param"]);
+    }
 
-    const processChartData = () => {
-      const groupedData = groupByDate(data);
-        console.log(groupedData)
-      // Create a chart data object for each group
-      const chartDataObj = {};
+    if(clientId && currentUser){
+      fetchDbtData(clientId);
+    }
+  }, [clientId, currentUser]);
 
-      Object.keys(groupedData).forEach((date) => {
-        const formattedData = [
-          ['Emotion', 'Rating', { role: 'style' }],
-          ['Anxiety', 0, 'color: #e5e4e2'],
-          ['Sadness', 0, 'color: #e5e4e2'],
-          ['Anger', 0, 'color: #e5e4e2'],
-          ['Shame/Guilt', 0, 'color: #e5e4e2'],
-          ['Happiness', 0, 'color: #e5e4e2'],
-        ];
+  const handleClick = (componentName) => {
+    setActiveComponent(componentName);
+  };
 
-        groupedData[date].forEach((entry) => {
-          formattedData[1][1] += entry.answers.emotional.anxiety;
-          formattedData[2][1] += entry.answers.emotional.sadness;
-          formattedData[3][1] += entry.answers.emotional.anger;
-          formattedData[4][1] += entry.answers.emotional.shame_guilt;
-          formattedData[5][1] += entry.answers.emotional.happiness;
-        });
+  const fetchBeckData = async () => {
+    // Call your API to fetch Beck data
+    const response = await axios.get(`${dbtLammbda}/beckreport?clientId=${clientId}&therapistId=${currentUser.userInfo._id}`);
+    setBeckData(response.data["param"]);
+  };
 
-        chartDataObj[date] = formattedData;
-      });
-
-      setGroupedChartData(chartDataObj);
-    };
-
-    processChartData();
-  }, [data]);
+  const handleBeckClick = async() => {
+    await fetchBeckData();
+    setActiveComponent('beck');
+  };
 
   return (
-    <div>
-      {Object.keys(groupedChartData).map((date) => (
-        <div key={date}>
-          <h2>{date}</h2>
-          <Chart
-            width={'500px'}
-            height={'300px'}
-            chartType="BarChart"
-            loader={<div>Loading Chart</div>}
-            data={groupedChartData[date]}
-            options={{
-              title: `Emotional Analysis for ${date}`,
-              chartArea: { width: '50%' },
-              hAxis: {
-                title: 'Total Rating',
-                minValue: 0,
-              },
-              vAxis: {
-                title: 'Emotion',
-              },
-            }}
-          />
-        </div>
-      ))}
+    <div id="container">
+      <div id="menu-card">
+        <div className={activeComponent === 'beck' ? "menu-item menu-item-active" : "menu-item"} onClick={handleBeckClick} id="menu-item-1">Beck report</div>
+        <div className={activeComponent === 'dbt' ? "menu-item menu-item-active" : "menu-item"} onClick={() => handleClick('dbt')} id="menu-item-2">DBT Report</div>
+        <div className={activeComponent === 'personal-progress' ? "menu-item menu-item-active" : "menu-item"} onClick={() => handleClick('personal-progress')} id="menu-item-3">Personal Progress</div>
+      </div>
+      <div id="content">
+        {activeComponent === 'beck' && beckData && <BeckReport beckData={beckData}/>}
+        {activeComponent === 'dbt' && dbtData && <DBTAnalysis data={dbtData} />}
+        {activeComponent === 'personal-progress' && <PersonalProgress />}
+      </div>
     </div>
   );
 };
 
-export default DBTAnalysis;
+export default ClientDashboard;

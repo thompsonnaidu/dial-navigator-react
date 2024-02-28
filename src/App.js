@@ -10,6 +10,7 @@ import SignUpPage from "./pages/sign-up/SignUpPage";
 import TaskDetailPage from "./pages/task-details/TaskDetailPage";
 // import ClientList from "./components/Therapist/ClientsList"
 import ClientDashboard from "./components/Therapist/ClientDashboard"
+import DBTAnalysis from "./components/Therapist/DBTAnalysis";
 
 function App() {
   return (
@@ -33,7 +34,13 @@ function App() {
               <Route path="/therapist" element={<PrivateRoute />}>
                 <Route exact path="/therapist/dashboard" element={<Dashboard />} />
               </Route>
-              <Route path="/client-dashboard/:clientId" element={<ClientDashboard />} />
+              <Route path="/client-dashboard" element={<PrivateRoute />}>
+                <Route path="/client-dashboard/:clientId" element={<ClientDashboard />} />
+                <Route path="/client-dashboard/:clientId/beck-report" element={<DBTAnalysis />} />
+                <Route path="/client-dashboard/:clientId/dbt-report" element={<DBTAnalysis />} />
+                <Route path="/client-dashboard/:clientId/personal-progres-report" element={<DBTAnalysis />} />
+              </Route>
+              
             </Routes>
           </div>
       </AuthProvider>

@@ -38,7 +38,7 @@ const ClientsList = () => {
 return (
     <div className="d-flex justify-content-center">
       <div className="table-responsive w-75">
-        <table className="table clients-table">
+        <table className="table clients-table" id="clients-table">
           <thead className="thead-dark">
             <tr>
               <th scope="col">Client Name</th>
