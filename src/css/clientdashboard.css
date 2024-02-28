@@ -1,10 +1,10 @@
 /* Add this to your CSS file */
-.container {
+#container {
     display: flex;
   }
   
 /* Add or update these styles in your CSS file */
-.menu-card {
+#menu-card {
     width: 300px; /* Adjust width as needed */
     height: 100vh; /* Full height */
     position: fixed;
@@ -20,7 +20,9 @@
     box-sizing: border-box;
   }
   
-  .menu-item {
+  #menu-item-1,
+  #menu-item-2,
+  #menu-item-3  {
     padding: 10px 20px;
     color: #ccc; /* Lighter text color */
     text-transform: uppercase;
@@ -30,41 +32,44 @@
     transition: color 0.3s, transform 0.3s;
   }
   
-  .menu-item:hover, .menu-item:focus {
+  #menu-item-1:hover, #menu-item-1:focus,
+  #menu-item-2:hover, #menu-item-2:focus,
+  #menu-item-3:hover, #menu-item-3:focus
+   {
     color: #fff; /* White text color on hover/focus */
     transform: translateX(5px); /* Slightly move to right on hover/focus */
   }
   
   /* Active class for the current menu item */
-  .menu-item-active {
+  #menu-item-active {
     color: #fff;
     pointer-events: none; /* Disable hover effect on active item */
   }
   
   /* Make scrollbar invisible */
-  .menu-card::-webkit-scrollbar {
+  #menu-card::-webkit-scrollbar {
     display: none;
   }
   
-  .menu-card {
+  #menu-card {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
 
-  .content {
+  #content {
     margin-top: 100px;
     margin-left: 500px; /* Same as menu-card width */
     flex-grow: 1;
     height: 100vh;
-    overflow-y: auto;
+    overflow-y: scroll;
   }
   
   /* Invisible scrollbar styles */
-  .content::-webkit-scrollbar {
+  #content::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
   }
   
-  .content {
+  #content {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
   }
