@@ -9,7 +9,7 @@ const Header = () => {
     console.log(currentUser);
   }, []);
   return (
-    <Navbar bg="primary" variant="dark">
+    <Navbar bg="primary" variant="dark" fixed="top">
       <Container>
         <Navbar.Brand>DAIL-NAVIGATOR</Navbar.Brand>
         

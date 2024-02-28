@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useParams } from 'react-router-dom';
 import DBTAnalysis from './DBTAnalysis';
 import { useAuth } from '../../contexts/AuthContext';
 import axios from "axios";
 import {dbtLammbda} from "../../config/baseurl";
+import "../../css/clientdashboard.css"
 
 const ClientDashboard = () => {
   const { clientId } = useParams();
@@ -22,26 +23,19 @@ const ClientDashboard = () => {
   }, [clientId]);
 
   return (
-    <div className="client-dashboard">
-      <div className="content">
-        <Outlet /> 
-        {dbtData && <DBTAnalysis data={dbtData} />}
-      </div>
+    <div className="container">
       <div className="menu-card">
-        <ul>
-          <li>
-            <Link to={`beck`}>BECK</Link>
-          </li>
-          <li>
-            <Link to={`dbt`}>DBT</Link>
-          </li>
-          <li>
-            <Link to={`personal-progress`}>Personal Progress</Link>
-          </li>
-        </ul>
+        <NavLink to="/beck" className={({ isActive }) => isActive ? "menu-item menu-item-active" : "menu-item"}>Beck report</NavLink>
+        <NavLink to="/dbt" className={({ isActive }) => isActive ? "menu-item menu-item-active" : "menu-item"}>DBT Report</NavLink>
+        <NavLink to="/personal-progress" className={({ isActive }) => isActive ? "menu-item menu-item-active" : "menu-item"}>Personal Progress</NavLink>
       </div>
+      <div className="content">
+      <Outlet /> {dbtData && <DBTAnalysis data={dbtData} />}
+      </div>
+
     </div>
   );
+
 };
 
 export default ClientDashboard;

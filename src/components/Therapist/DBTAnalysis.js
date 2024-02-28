@@ -50,6 +50,24 @@ const DBTAnalysis = ({ data }) => {
     processChartData();
   }, [data]);
 
+  const chartOptions = {
+    title: 'Emotional Analysis',
+    chartArea: { width: '50%' },
+    hAxis: {
+      title: 'Total Rating',
+      minValue: 0,
+    },
+    vAxis: {
+      title: 'Emotion',
+    },
+    animation: {
+      // Startup animation
+      startup: true,
+      easing: 'inAndOut',
+      duration: 1000, // Duration can be adjusted as needed
+    },
+  };
+
   return (
     <div>
       {Object.keys(groupedChartData).map((date) => (
@@ -62,15 +80,8 @@ const DBTAnalysis = ({ data }) => {
             loader={<div>Loading Chart</div>}
             data={groupedChartData[date]}
             options={{
+              ...chartOptions,
               title: `Emotional Analysis for ${date}`,
-              chartArea: { width: '50%' },
-              hAxis: {
-                title: 'Total Rating',
-                minValue: 0,
-              },
-              vAxis: {
-                title: 'Emotion',
-              },
             }}
           />
         </div>
