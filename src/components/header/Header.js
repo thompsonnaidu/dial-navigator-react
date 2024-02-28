@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <Navbar bg="primary" variant="dark">
       <Container>
-        <Navbar.Brand>Firebase Login Demo</Navbar.Brand>
+        <Navbar.Brand>DAIL-NAVIGATOR</Navbar.Brand>
         
         {currentUser && currentUser.userInfo && (
           <>

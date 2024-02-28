@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Card, Row,ProgressBar, Col } from 'react-bootstrap';
 import questions from "../../constants/beckQuestion.json";
-const BeckDepressionForm = () => {
+import axios from 'axios';
+import BASEURL from '../../config/baseurl';
+import { useAuth } from '../../contexts/AuthContext';
+
+import { useNavigate } from 'react-router';
+const BeckDepressionForm = ({taskId,...props}) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState(Array(questions.length).fill(null));
   const [error, setError] = useState(false);
 
+  const navigate= useNavigate();
   const handleNext = () => {
     const selectedOption = answers[currentStep];
     if (selectedOption !== null) {
@@ -24,17 +30,29 @@ const BeckDepressionForm = () => {
   const handleAnswer = (option) => {
     const updatedAnswers = [...answers];
     option["questionId"]=currentStep+1;
+    option["score"]=option.value;
     updatedAnswers[currentStep] = option;
     setAnswers(updatedAnswers);
     setError(false);
   };
-
+  const {currentUser}= useAuth();
   const handleSubmit = () => {
     // Handle submission logic here
     console.log('Submitted answers:', answers);
 
     const totalScore= answers.reduce((total,answer)=>total+answer.value,0);
     console.log(totalScore)
+    const submitAnswer= async()=>{
+        try {
+            const {data}=await axios.put(`${BASEURL}/api/beckquestion/${taskId}`,{answer:answers},{headers:{authToken:currentUser?.accessToken}})
+            console.log("data",data);
+            
+            navigate("/client/dashboard")
+          } catch (error) {
+          
+        }
+    }
+    submitAnswer();
   };
 
   return (
