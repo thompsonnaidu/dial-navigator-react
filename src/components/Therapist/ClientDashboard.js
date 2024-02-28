@@ -49,7 +49,7 @@ const ClientDashboard = () => {
         <div className={activeComponent === 'personal-progress' ? "menu-item menu-item-active" : "menu-item"} onClick={() => handleClick('personal-progress')} id="menu-item-3">Personal Progress</div>
       </div>
       <div id="content">
-        {activeComponent === 'beck' && beckData && <BeckReport beckData={beckData}/>}
+        {activeComponent === 'beck' && beckData && <BeckReport beckData={beckData.slice(1,)}/>}
         {activeComponent === 'dbt' && dbtData && <DBTAnalysis data={dbtData} />}
         {activeComponent === 'personal-progress' && <PersonalProgress />}
       </div>
