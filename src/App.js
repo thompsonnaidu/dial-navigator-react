@@ -8,6 +8,9 @@ import ForgotPasswordPage from "./pages/forgot-password/ForgotPasswordPage";
 import LoginPage from "./pages/login/Login.page";
 import SignUpPage from "./pages/sign-up/SignUpPage";
 import TaskDetailPage from "./pages/task-details/TaskDetailPage";
+// import ClientList from "./components/Therapist/ClientsList"
+import ClientDashboard from "./components/Therapist/ClientDashboard"
+
 function App() {
   return (
     <Router>
@@ -30,6 +33,7 @@ function App() {
               <Route path="/therapist" element={<PrivateRoute />}>
                 <Route exact path="/therapist/dashboard" element={<Dashboard />} />
               </Route>
+              <Route path="/client-dashboard/:clientId" element={<ClientDashboard />} />
             </Routes>
           </div>
       </AuthProvider>
