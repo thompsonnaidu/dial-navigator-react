@@ -63,7 +63,7 @@ const BeckReport = ({ beckData }) => {
   };
 
   const charts = Object.entries(categories).map(([categoryName, subcats]) => {
-    const chartData = transformDataForCategory(categoryName, subcats, beckData.param);
+    const chartData = transformDataForCategory(categoryName, subcats, beckData);
     return <ChartComponent key={categoryName} data={chartData} title={`Progress for ${categoryName}`} />;
   });
 
